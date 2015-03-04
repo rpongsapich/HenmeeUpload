@@ -1,9 +1,8 @@
-var SITEBASEURL = 'http://henmee.dll.in.th/';
 var MAXIMUM_FILE_SIZE = 3000000; // 3M
-var XID = parseInt(/xid=(\d+)/.exec(document.cookie)[1]) || false;
+//var XID = parseInt(/xid=(\d+)/.exec(document.cookie)[1]) || false;
 //console.log('henmeeupload',XID);
-if(XID) { // logged in user
-	console.log("หมีหมี่หมี้ activated!");
+//if(XID) { // logged in user
+//	console.log("หมีหมี่หมี้ activated!");
 	$('body').append('<div id="hmu_status"></div>');
 	if(document.readyState=='complete') {
 		// delay 1 sec to make sure everything loaded
@@ -14,7 +13,7 @@ if(XID) { // logged in user
 			window.setTimeout(mod_upload, 1000);
 		}
 	}
-}
+//}
 
 function mod_upload() {
 	$('input[name="poster"], textarea').removeClass('hm_dropsite').addClass('hmu_drop');
@@ -33,6 +32,7 @@ function mod_upload() {
 		var that = this;
 
 		if(event.originalEvent.dataTransfer) {
+// console.log("dataTransfer.files.length=",event.originalEvent.dataTransfer.files.length);
 			if(event.originalEvent.dataTransfer.files.length>0) {
 				event.preventDefault();
 				event.stopPropagation();
@@ -64,7 +64,7 @@ function mod_upload() {
 						}
 					}
 				}
-
+// console.log("fileList=", fileList);
 				$('#hmu_status').append('<div class="g">Uploading '+fileList.length+' file(s).</div>');
 				fileList.forEach(function(i){
 					$('#hmu_status').append('<div class="g">Uploading [ '+i+' ]');
@@ -72,13 +72,14 @@ function mod_upload() {
 
 				if(imgCount > 0) {
 					$.ajax({
-						url: SITEBASEURL+"henmeeupload.php",
+						url: "http://henmee.dll.in.th/henmeeupload.php",
 						type: "POST",
 						processData: false,
 						cache: false,
 						contentType: false,
 						data: formData,
 						success: function(R) {
+//console.log(R);
 							R = JSON.parse(R);
 							if(typeof(R)=='object' && R.length>0) {
 								R.forEach(function(r){
@@ -92,7 +93,7 @@ function mod_upload() {
 										$(that).val(function(o,v){ return v+r.url+' '; });
 									}
 								});
-								console.log(fileList);
+								//console.log(fileList);
 							}
 							$('#hmu_status').empty().hide();
 						}

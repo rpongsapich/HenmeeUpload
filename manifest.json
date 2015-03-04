@@ -1,7 +1,7 @@
 {
 	"manifest_version": 2,
 	"name": "หมีหมี่หมี้",
-	"version": "1.0.1.1",
+	"version": "1.0.2",
 	"author": "illuminati",
 	"icons": {
 		"16": "icon.png",
@@ -10,16 +10,17 @@
 	},
 	"permissions": [
 		"http://*.madoomee.com/*", 
-		"http://*.madoomee.com:69/*", 
+		"http://*.madoomee.com:69/*",
+		"http://*.madoomeemk.com/*", 
 		"http://henmee.dll.in.th/*"
 	],
 	"content_scripts": [
 		{
-			"matches": ["http://madoomee.com/*", "http://madoomee.com:69/*"],
+			"matches": ["http://madoomee.com/*", "http://madoomee.com:69/*", "http://madoomeemk.com/*"],
 			"css": ["henmeeupload.css"]
 		},
 		{
-			"matches": ["http://madoomee.com/*", "http://madoomee.com:69/*"],
+			"matches": ["http://madoomee.com/*", "http://madoomee.com:69/*", "http://madoomeemk.com/*"],
 			"js": ["jquery-2.1.1.min.js", "henmeeupload.js"]
 		}
 	]
